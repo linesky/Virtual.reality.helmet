@@ -42,6 +42,7 @@ END SUB
 ' Loop principal
 
 DO
+    SCREENlock()
     ' Limpa as bolas anteriores
     ClearBall(ball_x, ball_y, radius)
     ClearBall(ball_x + half_width, ball_y, radius)
@@ -54,6 +55,8 @@ DO
     DrawBall(ball_x + half_width, ball_y, radius, 15) ' Lado direito
 
     ' Espera um curto período para suavizar a animação
+    SCREENunlock()
     SLEEP 20
 
 LOOP UNTIL INKEY$ = CHR$(27) ' Sai ao pressionar Esc
+SCREENunlock()
