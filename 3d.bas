@@ -17,7 +17,7 @@ end type
 
 
 ' Tamanho do cubo
-DIM shared AS double size = 20
+DIM shared AS double size = 19
 
 ' Vertices do cubo 3D
 DIM cube(7) AS Point3D
@@ -50,8 +50,8 @@ END SUB
 ' Função para projetar um ponto 3D em 2D
 FUNCTION ProjectPoint(p AS Point3D, screen_width AS INTEGER, screen_height AS INTEGER) AS POINT
     DIM AS POINT projected
-    projected.x = screen_width \ 2 - INT(p.x*((size-p.z+1)*0.06))
-    projected.y = screen_height \ 2 - INT(p.y*((size-p.z+1)*0.1))
+    projected.x = screen_width \ 2 + INT((1+p.x)*((size+1-p.z)*0.06))
+    projected.y = screen_height \ 2 - INT((p.y+1)*((size+1-p.z)*0.1))
     RETURN projected
 END FUNCTION
 
@@ -100,7 +100,7 @@ DO
     
     ' Incrementa o ângulo de rotação
     angle += 0.05
-    IF angle > 2 * 3.14159 THEN angle = 0
+    IF angle > 2 * 3.14159 THEN angle = angle - 2 * 3.14159
     
     ' Pausa para suavizar a animação
     screenunlock()
