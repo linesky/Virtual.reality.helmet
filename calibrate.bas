@@ -114,7 +114,8 @@ DIM AS INTEGER step_size = 2 ' Tamanho do passo de movimento
 ' Função para desenhar o ambiente de calibração
 SUB DrawCalibrationScreen(left_x AS INTEGER, right_x AS INTEGER)
     ' Limpa a tela
-    CLS
+    SCREENlock()
+	CLS
     
     ' Desenha as linhas divisórias horizontais e verticais
     LINE (160, 0) - (160, 200), 15 ' Linha vertical que divide ao meio
@@ -129,7 +130,7 @@ SUB DrawCalibrationScreen(left_x AS INTEGER, right_x AS INTEGER)
     ' Desenha a pequena esfera no centro da tela
     CIRCLE (left_x, 100), 20, 15,,,,F ' Esfera central no meio da tela
     CIRCLE (right_x+160, 100), 20, 15,,,,F ' Esfera central no meio da tela
-
+    SCREENunlock()
 END SUB
 
 ' Loop principal
@@ -156,3 +157,4 @@ DO
     SLEEP 10
 
 LOOP UNTIL INKEY$ = CHR$(27) ' Sai ao pressionar a tecla ESC
+SCREENunlock()
