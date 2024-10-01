@@ -161,6 +161,7 @@ END SUB
 
 ' Loop principal
 DO
+    SCREENlock()
     CLS ' Limpa a tela
     line (160,0)-(160,200),15
     ' Atualiza a posição da bola e da plataforma
@@ -176,6 +177,8 @@ DO
     DrawPaddle(paddle_x + half_width, paddle_y, paddle_width, paddle_height)
 
     ' Espera um curto período para suavizar a animação
+	SCREENunlock()
     SLEEP 20
 
 LOOP UNTIL INKEY$ = CHR$(27) ' Sai ao pressionar a tecla Esc
+SCREENunlock()
