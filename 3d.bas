@@ -23,7 +23,7 @@ DIM shared AS double size = 20
 DIM cube(7) AS Point3D
 
 ' Inicializa os vértices do cubo
-cube(0) = TYPE(-size, -size, -size)
+cube(0) = TYPE( -size, -size, -size)
 cube(1) = TYPE( size, -size, -size)
 cube(2) = TYPE( size, size, -size)
 cube(3) = TYPE( -size, size, -size)
@@ -50,8 +50,8 @@ END SUB
 ' Função para projetar um ponto 3D em 2D
 FUNCTION ProjectPoint(p AS Point3D, screen_width AS INTEGER, screen_height AS INTEGER) AS POINT
     DIM AS POINT projected
-    projected.x = screen_width \ 2 + INT(p.x*((size-p.z)*0.08))
-    projected.y = screen_height \ 2 - INT(p.y+((size-p.z)*0.2))
+    projected.x = screen_width \ 2 - INT(p.x*((size-p.z+1)*0.06))
+    projected.y = screen_height \ 2 - INT(p.y*((size-p.z+1)*0.1))
     RETURN projected
 END FUNCTION
 
