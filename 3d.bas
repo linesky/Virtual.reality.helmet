@@ -17,20 +17,20 @@ end type
 
 
 ' Tamanho do cubo
-DIM shared AS double size = 19
+DIM shared AS double size = 150
 
 ' Vertices do cubo 3D
 DIM cube(7) AS Point3D
 
 ' Inicializa os vértices do cubo
-cube(0) = TYPE( -size, -size, -size)
-cube(1) = TYPE( size, -size, -size)
-cube(2) = TYPE( size, size, -size)
-cube(3) = TYPE( -size, size, -size)
-cube(4) = TYPE( -size, -size, size)
-cube(5) = TYPE( size, -size, size)
-cube(6) = TYPE( size, size, size)
-cube(7) = TYPE( -size, size, size)
+cube(0) = TYPE( -1, -1, -1)
+cube(1) = TYPE( 1, -1, -1)
+cube(2) = TYPE( 1, 1, -1)
+cube(3) = TYPE( -1, 1, -1)
+cube(4) = TYPE( -1, -1, 1)
+cube(5) = TYPE( 1, -1, 1)
+cube(6) = TYPE( 1, 1, 1)
+cube(7) = TYPE( -1, 1, 1)
 
 ' Função de rotação 3D
 SUB RotateCube (BYREF angle AS double, cube() AS Point3D)
@@ -42,6 +42,7 @@ SUB RotateCube (BYREF angle AS double, cube() AS Point3D)
         ' Rotacionar ao redor do eixo Y
         DIM AS double x = cube(i).x * cosA - cube(i).z * sinA
         DIM AS double z = cube(i).x * sinA + cube(i).z * cosA
+        
         cube(i).x = x
         cube(i).z = z
     NEXT
@@ -50,8 +51,9 @@ END SUB
 ' Função para projetar um ponto 3D em 2D
 FUNCTION ProjectPoint(p AS Point3D, screen_width AS INTEGER, screen_height AS INTEGER) AS POINT
     DIM AS POINT projected
-    projected.x = screen_width \ 2 + INT((1+p.x)*((size+1-p.z)*0.06))
-    projected.y = screen_height \ 2 - INT((p.y+1)*((size+1-p.z)*0.1))
+    dim factor as double =size /(p.z + 5)
+    projected.x = INT(p.x*factor+screen_width/2)
+    projected.y =  INT(p.y*factor+screen_height/2)
     RETURN projected
 END FUNCTION
 
@@ -99,7 +101,7 @@ DO
     DrawWireframeCube(cube(), half_width *100 / 35, screen_height)
     
     ' Incrementa o ângulo de rotação
-    angle += 0.05
+    angle += 0.01
     IF angle > 2 * 3.14159 THEN angle = angle - 2 * 3.14159
     
     ' Pausa para suavizar a animação
