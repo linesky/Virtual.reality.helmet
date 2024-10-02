@@ -36,7 +36,7 @@ SUB RotatepYramid (BYREF angle AS double, pYramid() AS Point3D)
     cosA = COS(angle)
     sinA = SIN(angle)
     
-    FOR i AS INTEGER = 0 TO 5
+    FOR i AS INTEGER = 0 TO 4
         ' Rotacionar ao redor do eixo Y
         DIM AS double x = pYramid(i).x * cosA - pYramid(i).z * sinA
         DIM AS double z = pYramid(i).x * sinA + pYramid(i).z * cosA
@@ -67,7 +67,7 @@ SUB DrawWireframepYramid(pYramid() AS Point3D, screen_x AS INTEGER, screen_y AS 
     edges(6, 0) = 2: edges(6, 1) = 4
     edges(7, 0) = 3: edges(7, 1) = 4
     
-    FOR i AS INTEGER = 0 TO 8
+    FOR i AS INTEGER = 0 TO 7
         DIM AS POINT p1 = ProjectPoint(pYramid(edges(i, 0)), screen_x, screen_y)
         DIM AS POINT p2 = ProjectPoint(pYramid(edges(i, 1)), screen_x, screen_y)
         LINE (p1.x, p1.y) - (p2.x, p2.y), 15 ' Desenha a linha em branco
