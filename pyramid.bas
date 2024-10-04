@@ -73,7 +73,22 @@ SUB DrawWireframepYramid(pYramid() AS Point3D, screen_x AS INTEGER, screen_y AS 
         LINE (p1.x, p1.y) - (p2.x, p2.y), 15 ' Desenha a linha em branco
     NEXT
 END SUB
-
+sub scrs(ssss as integer)
+    if ssss=0 then
+        view  (0,0)-(159,199)
+        window (0,0)-(159,199)
+    end if 
+    if ssss=1 then
+        view  (159,0)-(319,199)
+        window (0,0)-(159,199)
+    end if
+    if ssss=2 then
+        view
+        window
+        CLS
+        line(160,0)-(160,200)
+    end if 
+end sub
 ' Variáveis de rotação
 DIM AS double angle = 0
 DIM AS INTEGER screen_width = 320
@@ -83,16 +98,15 @@ DIM AS INTEGER half_width = 160
 ' Loop principal
 DO
     screenlock()
-    CLS ' Limpa a tela
-    line (160,0)-(160,200)
+    scrs(2)
     ' Rotaciona o cubo
     RotatepYramid(angle, pYramid())
-    
+    scrs(0)
     ' Desenha o cubo no lado esquerdo da tela (VR)
     DrawWireframepYramid(pYramid(), half_width, screen_height)
-    
+    scrs(1)
     ' Desenha o cubo no lado direito da tela (VR)
-    DrawWireframepYramid(pYramid(), half_width *100 / 35, screen_height)
+    DrawWireframepYramid(pYramid(), half_width , screen_height)
     
     ' Incrementa o ângulo de rotação
     angle += 0.01
