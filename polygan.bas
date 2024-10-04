@@ -70,14 +70,21 @@ sub fillPolygon(p(any) as point,colors as integer)
     i=ubound(p)
     dim xx as integer=0
     dim yy as integer=0
+    dim xxx as integer=0
+    dim yyy as integer=0
+    drawPolygon(p(),255)
     xyxymax=maxPolygon(p())
     
     xyxymin=minPolygon(p())
-   
-    xx=(xyxymax.x-xyxymin.x)/2+xyxymin.x
-    yy=(xyxymax.y-xyxymin.y)/2+xyxymin.y
+    xxx=(xyxymax.x-xyxymin.x)/2
+    yyy=(xyxymax.y-xyxymin.y)/2
+    xx=xxx+xyxymin.x
+    yy=yyy+xyxymin.y
     
-    paint(xx,yy),colors
+    if xxx>3 and yyy>3 then 
+        paint(xx,yy),colors,255
+        drawPolygon(p(),colors)
+    end if
     
 end sub 
 
@@ -95,11 +102,11 @@ DO
     line(160,0)-(160,200)
     view  (0,0)-(159,199)
     window (0,0)-(159,199)
-    drawPolygon(xy(),15)
+    
     fillPolygon(xy(),15)
     view  (159,0)-(319,199)
     window (0,0)-(159,199)
-    drawPolygon(xy(),15)
+    
     fillPolygon(xy(),15)
     SCREENunlock()
     SLEEP 200
