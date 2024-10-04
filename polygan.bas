@@ -18,10 +18,10 @@ DIM shared height AS INTEGER = 200
 DO
     SCREENlock()
     line(160,0)-(160,200),15
-    line(90,50)-(110,150),15,b
-    paint(100,100),15
-    line(90+160,50)-(110+160,150),15,b
-    paint(100+160,100),15
+    line(70,50)-(90,150),15,b
+    paint(80,100),15
+    line(70+160,50)-(90+160,150),15,b
+    paint(80+160,100),15
     SCREENunlock()
     SLEEP 200
 
