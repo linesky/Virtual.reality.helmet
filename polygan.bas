@@ -15,6 +15,24 @@ DIM shared half_width AS INTEGER = 160 ' Metade do ecrã para VR
 DIM shared height AS INTEGER = 200
 redim xy(3) as point
 redim xycopy(3) as point
+sub rectPolygon(xy(any) as point , w as double, h as double )
+    dim i as integer=0
+    dim n as integer=0
+    
+    i=3
+    redim pp(i) as point
+    
+    xy(0)=type(0,0)
+    xy(1)=type(w,0)
+    xy(2)=type(w,h)
+    xy(3)=type(0,h)
+
+    
+    
+   
+    
+    
+end sub
 sub addPolygon(p(any) as point , xx as double, yy as double )
     dim i as integer=0
     dim n as integer=0
@@ -122,31 +140,44 @@ sub fillPolygon(p(any) as point,colors as integer)
     end if
     
 end sub 
-
+sub scrs(ssss as integer)
+    if ssss=0 then
+        view  (0,0)-(159,199)
+        window (0,0)-(159,199)
+    end if 
+    if ssss=1 then
+        view  (159,0)-(319,199)
+        window (0,0)-(159,199)
+    end if
+    if ssss=2 then
+        view
+        window
+        CLS
+        line(160,0)-(160,200)
+    end if 
+end sub
+dim n as integer
 ' Loop principal
-xy(0)=type(10,50)
-xy(1)=type(30,50)
-xy(2)=type(30,150)
-xy(3)=type(10,150)
+rectPolygon(xy(),20,100)
+addPolygon(xy(),10,50)
 copyPolygon(xycopy(),xy())
 DO
     SCREENlock()
-    view
-    window
-    CLS
-    line(160,0)-(160,200)
-    view  (0,0)-(159,199)
-    window (0,0)-(159,199)
+    scrs(2)
     
-    fillPolygon(xy(),15)
-    view  (159,0)-(319,199)
-    window (0,0)-(159,199)
     
-    fillPolygon(xy(),15)
+    
+    for n= 0 to 1
+        scrs(n)
+        
+        if n<>2 then fillPolygon(xy(),15)
+    next
+    
+    
     SCREENunlock()
     addPolygon(xy(),5.0,0.0)
     if xy(0).x> 120 then copyPolygon(xy(),xycopy())
-    SLEEP 200
+    SLEEP 20
 
 LOOP UNTIL INKEY$ = CHR$(27) ' Sai ao pressionar Esc
 SCREENunlock()
