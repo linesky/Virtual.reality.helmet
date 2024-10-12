@@ -59,7 +59,7 @@ DO
     if objss.w > 1400 then objss.w=100
     for n= 0 to 1
         scrs(n)
-        circle(3200/4,2000/2),500,15,,,,f
+        circle(3200/4,2000/2),500,15,,,1.0,f
         objc(objss.x,objss.y,objss.w,objss.h,1,objss.colors)
     next
     
