@@ -14,9 +14,9 @@ CLS
  sub fillls(x as integer,y as integer,x1 as integer,y1 as integer,w as integer,colors as integer)
     dim nx as integer
     dim ny as integer
-    for ny=y+w to y1-w step w
-        for nx=x+w to x1-w step w
-            circle(nx,ny),w,colors
+    for ny=y+w to y1-w step w*2
+        for nx=x+w to x1-w step w*2
+            circle(nx,ny),w,colors,,,1.0,f
         next
     next
  end sub 
@@ -51,9 +51,9 @@ dim nn as integer
     for n= 0 to 1
         scrs(n)
         
-        if n<>2 then 
-            fillls(0,0,159,199,15,15)
-        end if 
+        
+        fillls(0,0,159,199,10,15+5)
+         
     next
     
     
