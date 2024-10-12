@@ -14,7 +14,7 @@ CLS
      dim r as integer=-(w/2)+rnd()*w
      return r
  end function   
- sub centerball(x as integer,y as integer,w  as integer,colors as integer)
+ sub centerball(x as integer,y as integer,w  as double,colors as integer)
      dim xx as integer=x-w/2
      dim yy as integer=y-w/2
      circle(xx,yy),w,colors,,,,f
@@ -45,6 +45,7 @@ sub scrs(ssss as integer)
         line(160,0)-(160,200)
     end if 
 end sub
+randomize(timer())
 dim n as integer
 dim nn as integer
 dim nx(5) as integer
@@ -68,7 +69,7 @@ next
             line(0,-5)-(0,5),31
             line(-5,0)-(5,0),31
             for nn= 0 to 4
-                centerball(nx(nn),ny(nn),1,16+10)
+                centerball(nx(nn),ny(nn),0.5,16+10)
     
             next 
         end if 
