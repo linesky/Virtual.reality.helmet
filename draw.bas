@@ -15,7 +15,7 @@ CLS
  sub linesg(x as integer,y as integer,r as double,sts as integer ,colors as integer)
     dim n as integer
     dim rr as double=r
-    dim rrr as double=1/3.1415927
+    dim rrr as double=15/r
     for n=0 to r 
         
         line(x-rr,y-n)-(x+rr,y-n),colors
@@ -53,7 +53,7 @@ dim n as integer
     for n= 0 to 1
         scrs(n)
         
-        linesg(160/2,200/2,50,1.0,15+6)
+        linesg(160/2,200/2,70,1.0,15+6)
     next
     
     
