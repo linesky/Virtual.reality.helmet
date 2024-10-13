@@ -16,12 +16,16 @@ CLS
     dim n as integer
     dim rr as double=r
     dim rrr as double=15/r
+    if rr > 99 then rrr=12/r
+    if rr < 25 then rrr=10/r
+    if rr < 10 then rrr=8/r
     for n=0 to r 
         
         line(x-n,y-rr)-(x-n,y+rr),colors
         line(x+n,y-rr)-(x+n,y+rr),colors
         rr=rr-rrr
         rrr=rrr*1.032
+        if rr<0.1 then rr=0.1
     next
  end sub 
 
